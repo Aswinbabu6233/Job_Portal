@@ -14,7 +14,7 @@ const SavedJobs = () => {
   useEffect(() => {
     const fetchSavedJobs = async () => {
       try {
-        const response = await axios.get(`${BASE_API}/auth/saved`, {
+        const response = await axios.get(`${BASE_API}/api/auth/saved`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
