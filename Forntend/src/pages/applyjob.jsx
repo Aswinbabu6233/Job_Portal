@@ -3,7 +3,6 @@ import Navbar from "../components/navbar";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
-import BASE_API from "../utils/BaseUrl";
 
 const Applyjob = () => {
   const { id } = useParams(); // job ID from route
@@ -28,7 +27,7 @@ const Applyjob = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        `${BASE_API}jobs/${id}/apply`,
+        `http://localhost:3000/api/jobs/${id}/apply`,
         formData,
         {
           headers: {

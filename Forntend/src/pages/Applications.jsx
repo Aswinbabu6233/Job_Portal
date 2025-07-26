@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "../components/navbar";
 import { useSelector } from "react-redux";
-import BASE_API from "../utils/BaseUrl";
 
 const Applications = () => {
   const [applications, setApplications] = useState([]);
@@ -12,11 +11,14 @@ const Applications = () => {
   useEffect(() => {
     const fetchApplications = async () => {
       try {
-        const response = await axios.get(`${BASE_API}/applications`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get(
+          "http://localhost:3000/api/applications",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         // Only keep applications relevant to employer
         setApplications(response.data);
@@ -66,7 +68,7 @@ const Applications = () => {
                 </p>
                 {app.resume && (
                   <a
-                    href={`https://job-portal-backend-nbgz.onrender.com${app.resume}`}
+                    href={`http://localhost:3000/${app.resume}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-block mt-2 bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 text-sm"

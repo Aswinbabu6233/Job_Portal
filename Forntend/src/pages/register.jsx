@@ -4,7 +4,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import BASE_API from "../utils/BaseUrl";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -57,11 +56,15 @@ const Register = () => {
         data.append("profile", profile);
       }
 
-      const response = await axios.post(`${BASE_API}/api/auth/register`, data, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const response = await axios.post(
+        "http://localhost:3000/api/auth/register",
+        data,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
       toast.success("Registration successful!");
       console.log(response.data);
