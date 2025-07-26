@@ -3,6 +3,7 @@ const http = require("http");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const { Server } = require("socket.io");
+const path = require("path");
 
 const connectDB = require("./config/db");
 const SocketHandler = require("./config/socket");
@@ -23,6 +24,7 @@ const applicationRoutes = require("./routes/application");
 
 app.use(cors());
 app.use(express.json());
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use("/api/auth", authRoutes);
 app.use("/api/jobs", jobRoutes);
