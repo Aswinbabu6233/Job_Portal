@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Navbar from "../components/navbar";
+import BASE_API from "../utils/BaseUrl";
 
 const UpdateJob = () => {
   const [formData, setFormData] = useState({
@@ -24,9 +25,7 @@ const UpdateJob = () => {
   useEffect(() => {
     const fetchJobDetails = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:3000/api/jobs/${id}`
-        );
+        const response = await axios.get(`${BASE_API}/jobs/${id}`);
         const job = response.data;
 
         setFormData({
@@ -57,7 +56,7 @@ const UpdateJob = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.put(`http://localhost:3000/api/jobs/${id}`, formData, {
+      await axios.put(`${BASE_API}/jobs/${id}`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -5,6 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../utils/authslice";
+import BASE_API from "../utils/BaseUrl";
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -24,10 +25,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/auth/login",
-        formData
-      );
+      const response = await axios.post(`${BASE_API}/auth/login`, formData);
 
       const { token } = response.data;
 

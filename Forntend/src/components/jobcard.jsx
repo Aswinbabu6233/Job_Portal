@@ -4,6 +4,7 @@ import { Heart, HeartOff } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSaveJob } from "../utils/savedjobslice";
 import axios from "axios";
+import BASE_API from "../utils/BaseUrl";
 
 const Jobcard = ({ title, company, location, description, path }) => {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ const Jobcard = ({ title, company, location, description, path }) => {
     try {
       if (isSaved) {
         // 🔴 UNSAVE request
-        await axios.delete(`http://localhost:3000/api/auth/unsave/${path}`, {
+        await axios.delete(`${BASE_API}/auth/unsave/${path}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -27,7 +28,7 @@ const Jobcard = ({ title, company, location, description, path }) => {
       } else {
         // 🟢 SAVE request
         await axios.post(
-          `http://localhost:3000/api/auth/save/${path}`,
+          `${BASE_API}/auth/save/${path}`,
           {},
           {
             headers: {

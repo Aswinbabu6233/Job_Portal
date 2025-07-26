@@ -5,6 +5,7 @@ import axios from "axios";
 import { socket } from "../utils/socketio"; // assuming this is how you import it
 import Jobcard from "../components/jobcard";
 import Navbar from "../components/navbar";
+import BASE_API from "../utils/BaseUrl";
 
 const Home = () => {
   const [jobs, setJobs] = useState([]);
@@ -14,11 +15,11 @@ const Home = () => {
 
   const fetchJobs = async () => {
     try {
-      let url = "http://localhost:3000/api/jobs";
+      let url = `${BASE_API}/jobs`;
       const config = {};
 
       if (user?.role === "employer") {
-        url = "http://localhost:3000/api/jobs/employer/jobs";
+        url = `${BASE_API}/jobs/employer/jobs`;
         config.headers = {
           Authorization: `Bearer ${token}`,
         };

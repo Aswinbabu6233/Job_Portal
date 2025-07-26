@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "../components/navbar";
 import { useSelector } from "react-redux";
+import BASE_API from "../utils/BaseUrl";
 
 const Applications = () => {
   const [applications, setApplications] = useState([]);
@@ -11,14 +12,11 @@ const Applications = () => {
   useEffect(() => {
     const fetchApplications = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:3000/api/applications",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.get(`${BASE_API}/applications`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         // Only keep applications relevant to employer
         setApplications(response.data);

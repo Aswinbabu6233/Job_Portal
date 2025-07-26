@@ -3,6 +3,7 @@ import Navbar from "../components/navbar";
 import Appliedjobcard from "../components/appliedjobcard";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import BASE_API from "../utils/BaseUrl";
 
 const Appliedjobs = () => {
   const [appliedJobs, setAppliedJobs] = useState([]);
@@ -12,14 +13,11 @@ const Appliedjobs = () => {
   useEffect(() => {
     const fetchApplications = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:3000/api/applications",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.get(`${BASE_API}/applications`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         // Extract job details from each application
         const jobs = response.data.map((app) => app.job);
