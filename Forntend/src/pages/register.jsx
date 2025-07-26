@@ -57,7 +57,7 @@ const Register = () => {
         data.append("profile", profile);
       }
 
-      const response = await axios.post(`${BASE_API}/auth/register`, data, {
+      const response = await axios.post(`${BASE_API}/api/auth/register`, data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

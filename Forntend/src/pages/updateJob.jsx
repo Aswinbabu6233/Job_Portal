@@ -25,7 +25,7 @@ const UpdateJob = () => {
   useEffect(() => {
     const fetchJobDetails = async () => {
       try {
-        const response = await axios.get(`${BASE_API}/jobs/${id}`);
+        const response = await axios.get(`${BASE_API}/api/jobs/${id}`);
         const job = response.data;
 
         setFormData({
@@ -56,7 +56,7 @@ const UpdateJob = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.put(`${BASE_API}/jobs/${id}`, formData, {
+      await axios.put(`${BASE_API}/api/jobs/${id}`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

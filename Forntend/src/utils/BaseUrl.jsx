@@ -1,4 +1,3 @@
-const mainURL = "https://jobnest-backend-wld8.onrender.com";
-const BASE_API = `${mainURL}/api`;
+const BASE_API = "https://job-portal-backend-nbgz.onrender.com";
 
 export default BASE_API;
