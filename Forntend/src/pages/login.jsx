@@ -25,7 +25,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`${BASE_API}/auth/login`, formData);
+      const response = await axios.post(`${BASE_API}/api/auth/login`, formData);
 
       const { token } = response.data;
 
