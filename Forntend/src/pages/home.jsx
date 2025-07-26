@@ -15,11 +15,11 @@ const Home = () => {
 
   const fetchJobs = async () => {
     try {
-      let url = `${BASE_API}/jobs`;
+      let url = `${BASE_API}/api/jobs`;
       const config = {};
 
       if (user?.role === "employer") {
-        url = `${BASE_API}/jobs/employer/jobs`;
+        url = `${BASE_API}/api/jobs/employer/jobs`;
         config.headers = {
           Authorization: `Bearer ${token}`,
         };
