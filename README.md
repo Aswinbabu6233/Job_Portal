@@ -2,15 +2,7 @@
 
 This is a **full-stack MERN job portal application** where users can register as **job seekers or employers**, post and apply for jobs, upload resumes, and manage applications. Built with React, Node.js, Express, MongoDB, and Redux.
 
----
 
-## 🚀 Live Demo
-
-🔗 [Live Frontend URL](https://your-frontend-url.com)  
-🔗 [Live Backend URL / API](https://your-backend-url.com)
-
-
----
 
 ## ✨ Features
 
