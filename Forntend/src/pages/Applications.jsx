@@ -66,7 +66,7 @@ const Applications = () => {
                 </p>
                 {app.resume && (
                   <a
-                    href={`https://jobnest-backend-wld8.onrender.com${app.resume}`}
+                    href={`https://job-portal-backend-nbgz.onrender.com${app.resume}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-block mt-2 bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 text-sm"
