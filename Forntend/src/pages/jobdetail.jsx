@@ -19,7 +19,7 @@ const Jobdetail = () => {
 
   const deletejob = async () => {
     try {
-      const del = await axios.delete(`${BASE_API}/jobs/${id}`, {
+      const del = await axios.delete(`${BASE_API}/api/jobs/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -36,7 +36,7 @@ const Jobdetail = () => {
 
   const fetchJobDetails = async () => {
     try {
-      const response = await axios.get(`${BASE_API}/jobs/${id}`);
+      const response = await axios.get(`${BASE_API}/api/jobs/${id}`);
       setJob(response.data); // response is a single job object
     } catch (error) {
       toast.error("Error fetching the job details");
