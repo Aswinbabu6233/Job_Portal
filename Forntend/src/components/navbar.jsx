@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { Briefcase, Menu, X } from "lucide-react";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { logout } from "../utils/authslice";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const auth = useSelector((state) => state.user); // holds { token, user }
   const user = auth?.user;
   const Employerpresent = user?.role === "employer";
@@ -12,6 +16,8 @@ const Navbar = () => {
   const toggleMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
+
+  // logout
 
   return (
     <nav className="bg-gradient-to-br from-purple-600 to-blue-600 text-white shadow-md">
@@ -35,6 +41,22 @@ const Navbar = () => {
               <Link to="/employee/applications" className="hover:text-gray-200">
                 Applications
               </Link>
+              {user ? (
+                <Link to="/profile" className="hover:text-gray-200">
+                  <img
+                    src={`http://localhost:3000/${user.profile.replace(
+                      /\\/g,
+                      "/"
+                    )}`}
+                    alt="Profile"
+                    className="w-8 h-8 rounded-full"
+                  />
+                </Link>
+              ) : (
+                <Link to="/login" className="hover:text-gray-200">
+                  Login
+                </Link>
+              )}
             </div>
           ) : (
             <div className="hidden md:flex items-center gap-6">
@@ -47,6 +69,22 @@ const Navbar = () => {
               <Link to="/applied" className="hover:text-gray-200">
                 Applied Jobs
               </Link>
+              {user ? (
+                <Link to="/profile" className="hover:text-gray-200">
+                  <img
+                    src={`http://localhost:3000/${user.profile.replace(
+                      /\\/g,
+                      "/"
+                    )}`}
+                    alt="Profile"
+                    className="w-8 h-8 rounded-full"
+                  />
+                </Link>
+              ) : (
+                <Link to="/login" className="hover:text-gray-200">
+                  Login
+                </Link>
+              )}
             </div>
           )}
 
@@ -76,6 +114,22 @@ const Navbar = () => {
               <Link to="/employee/applications" className="hover:text-gray-200">
                 Applications
               </Link>
+              {user ? (
+                <Link to="/profile" className="hover:text-gray-200">
+                  <img
+                    src={`http://localhost:3000/${user.profile.replace(
+                      /\\/g,
+                      "/"
+                    )}`}
+                    alt="Profile"
+                    className="w-8 h-8 rounded-full"
+                  />
+                </Link>
+              ) : (
+                <Link to="/login" className="hover:text-gray-200">
+                  Login
+                </Link>
+              )}
             </div>
           )
         : mobileMenuOpen && (
@@ -89,6 +143,22 @@ const Navbar = () => {
               <Link to="/applied" className="block hover:text-gray-200">
                 Applied Jobs
               </Link>
+              {user ? (
+                <Link to="/profile" className="hover:text-gray-200">
+                  <img
+                    src={`http://localhost:3000/${user.profile.replace(
+                      /\\/g,
+                      "/"
+                    )}`}
+                    alt="Profile"
+                    className="w-8 h-8 rounded-full"
+                  />
+                </Link>
+              ) : (
+                <Link to="/login" className="block hover:text-gray-200">
+                  Login
+                </Link>
+              )}
             </div>
           )}
     </nav>

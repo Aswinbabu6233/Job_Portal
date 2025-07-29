@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 import { socket } from "../utils/socketio"; // assuming this is how you import it
 import Jobcard from "../components/jobcard";
@@ -17,7 +17,7 @@ const Home = () => {
       let url = "http://localhost:3000/api/jobs";
       const config = {};
 
-      if (user?.role === "employer") {
+      if (user?.role === "employer" && token) {
         url = "http://localhost:3000/api/jobs/employer/jobs";
         config.headers = {
           Authorization: `Bearer ${token}`,
@@ -33,9 +33,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    if (token) {
-      fetchJobs();
-    }
+    fetchJobs(); // Always fetch jobs for both guests and logged-in users
 
     socket.on("job_created", (newJob) => {
       toast.success(`New job posted: ${newJob.title}`);
@@ -45,11 +43,13 @@ const Home = () => {
     return () => {
       socket.off("job_created");
     };
-  }, [token]);
+  }, [token]); // Keep token in deps if you're using it inside fetchJobs
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-purple-100 to-blue-100">
       <Navbar />
+      <ToastContainer position="top-right" autoClose={5000} theme="colored" />
+
       <main className="max-w-6xl mx-auto px-4 py-8">
         <h2 className="text-2xl font-semibold mb-4">Available Jobs</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">

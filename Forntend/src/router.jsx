@@ -10,6 +10,7 @@ import SavedJobs from "./pages/savedjob";
 import Appliedjobs from "./pages/appliedjobs";
 import Applications from "./pages/Applications";
 import UpdateJob from "./pages/updateJob";
+import Userprofile from "./pages/userprofile";
 
 let Routerpath = createBrowserRouter([
   { path: "/login", element: <Login /> },
@@ -22,6 +23,7 @@ let Routerpath = createBrowserRouter([
   { path: "/applied", element: <Appliedjobs /> },
   { path: "/update/:id", element: <UpdateJob /> },
   { path: "/employee/applications", element: <Applications /> },
+  { path: "/profile", element: <Userprofile /> },
 ]);
 
 export default Routerpath;
