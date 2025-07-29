@@ -7,7 +7,6 @@ import { logout } from "../utils/authslice";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const auth = useSelector((state) => state.user); // holds { token, user }
   const user = auth?.user;
@@ -105,17 +104,20 @@ const Navbar = () => {
       {Employerpresent
         ? mobileMenuOpen && (
             <div className="md:hidden px-4 pb-4 space-y-2 bg-gradient-to-br from-purple-700 to-blue-700">
-              <Link to="/CreateJob" className="hover:text-gray-200">
+              <Link to="/CreateJob" className="block hover:text-gray-200">
                 Create Job
               </Link>
-              <Link to="/" className="hover:text-gray-200">
+              <Link to="/" className="block hover:text-gray-200">
                 All Jobs
               </Link>
-              <Link to="/employee/applications" className="hover:text-gray-200">
+              <Link
+                to="/employee/applications"
+                className=" block hover:text-gray-200"
+              >
                 Applications
               </Link>
               {user ? (
-                <Link to="/profile" className="hover:text-gray-200">
+                <Link to="/profile" className=" block hover:text-gray-200">
                   <img
                     src={`http://localhost:3000/${user.profile.replace(
                       /\\/g,
@@ -126,7 +128,7 @@ const Navbar = () => {
                   />
                 </Link>
               ) : (
-                <Link to="/login" className="hover:text-gray-200">
+                <Link to="/login" className="block hover:text-gray-200">
                   Login
                 </Link>
               )}

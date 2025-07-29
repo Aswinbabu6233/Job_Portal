@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  jobs: [],
+  jobs: [], // array of saved job IDs
 };
 
 const savedJobsSlice = createSlice({
@@ -16,8 +16,11 @@ const savedJobsSlice = createSlice({
         state.jobs.push(jobId);
       }
     },
+    setSavedJobs: (state, action) => {
+      state.jobs = action.payload; // load saved jobs on login or mount
+    },
   },
 });
 
-export const { toggleSaveJob } = savedJobsSlice.actions;
+export const { toggleSaveJob, setSavedJobs } = savedJobsSlice.actions;
 export default savedJobsSlice.reducer;

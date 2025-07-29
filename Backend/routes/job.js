@@ -35,7 +35,7 @@ module.exports = (io) => {
     "/:id/apply",
     authenticate,
     isUser,
-    upload.single("resume"), // ✅ Only resume is uploaded as a file
+    upload.single("resume"),
     (req, res) => applytoJob(req, res, io)
   );
 

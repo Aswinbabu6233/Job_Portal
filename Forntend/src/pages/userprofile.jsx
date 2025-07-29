@@ -1,10 +1,13 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/navbar";
+import { logout } from "../utils/authslice";
 
 const Userprofile = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const auth = useSelector((state) => state.user); // holds { token, user }
   const user = auth?.user;
   console.log("User Profile:", user);

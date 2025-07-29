@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Heart, HeartOff } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,21 +11,22 @@ const Jobcard = ({ title, company, location, description, path }) => {
   const user = auth?.user;
   const token = auth?.token || localStorage.getItem("token");
   const userpresent = user?.role === "job_seeker";
-  const savedJobs = useSelector((state) => state.savedJobs.jobs);
 
-  const isSaved = savedJobs.includes(path);
+  const savedJobs = useSelector((state) => state.savedJobs.jobs);
+  const [saving, setSaving] = useState(false);
+
+  const isSaved = savedJobs.some((id) => id === path);
 
   const handleSaveToggle = async () => {
+    setSaving(true);
     try {
       if (isSaved) {
-        // 🔴 UNSAVE request
         await axios.delete(`http://localhost:3000/api/auth/unsave/${path}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
       } else {
-        // 🟢 SAVE request
         await axios.post(
           `http://localhost:3000/api/auth/save/${path}`,
           {},
@@ -36,9 +37,12 @@ const Jobcard = ({ title, company, location, description, path }) => {
           }
         );
       }
+
       dispatch(toggleSaveJob(path));
     } catch (error) {
       console.error("Save/Unsave error:", error);
+    } finally {
+      setSaving(false);
     }
   };
 
@@ -63,9 +67,16 @@ const Jobcard = ({ title, company, location, description, path }) => {
         {userpresent && (
           <button
             onClick={handleSaveToggle}
+            disabled={saving}
             className="ml-2 text-red-500 hover:text-red-700 transition"
           >
-            {isSaved ? <HeartOff /> : <Heart />}
+            {saving ? (
+              <span className="animate-pulse text-red-400">Saving...</span>
+            ) : isSaved ? (
+              <HeartOff />
+            ) : (
+              <Heart />
+            )}
           </button>
         )}
       </div>

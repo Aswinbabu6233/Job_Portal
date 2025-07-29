@@ -3,6 +3,7 @@ import Navbar from "../components/navbar";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 const Applyjob = () => {
   const { id } = useParams(); // job ID from route
@@ -11,6 +12,7 @@ const Applyjob = () => {
   const [coverLetter, setCoverLetter] = useState("");
   const [resume, setResume] = useState(null);
   const [loading, setLoading] = useState(false);
+  const auth = useSelector((state) => state.user); // holds { token, user }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,7 +34,7 @@ const Applyjob = () => {
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${auth.token}`,
           },
         }
       );
