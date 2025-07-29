@@ -43,7 +43,7 @@ const Navbar = () => {
               {user ? (
                 <Link to="/profile" className="hover:text-gray-200">
                   <img
-                    src={`http://localhost:3000/${user.profile.replace(
+                    src={`https://job-portal-backend-uifu.onrender.com/${user.profile.replace(
                       /\\/g,
                       "/"
                     )}`}
@@ -71,7 +71,7 @@ const Navbar = () => {
               {user ? (
                 <Link to="/profile" className="hover:text-gray-200">
                   <img
-                    src={`http://localhost:3000/${user.profile.replace(
+                    src={`https://job-portal-backend-uifu.onrender.com/${user.profile.replace(
                       /\\/g,
                       "/"
                     )}`}
@@ -119,7 +119,7 @@ const Navbar = () => {
               {user ? (
                 <Link to="/profile" className=" block hover:text-gray-200">
                   <img
-                    src={`http://localhost:3000/${user.profile.replace(
+                    src={`https://job-portal-backend-uifu.onrender.com/${user.profile.replace(
                       /\\/g,
                       "/"
                     )}`}
@@ -148,7 +148,7 @@ const Navbar = () => {
               {user ? (
                 <Link to="/profile" className="hover:text-gray-200">
                   <img
-                    src={`http://localhost:3000/${user.profile.replace(
+                    src={`https://job-portal-backend-uifu.onrender.com/${user.profile.replace(
                       /\\/g,
                       "/"
                     )}`}

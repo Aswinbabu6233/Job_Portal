@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import Jobcard from "../components/jobcard";
 import axios from "axios";
 import Navbar from "../components/navbar";
+import BASE_URL from "../utils/Base_url";
 
 const SavedJobs = () => {
   const [savedJobs, setSavedJobs] = useState([]);
@@ -13,14 +14,11 @@ const SavedJobs = () => {
   useEffect(() => {
     const fetchSavedJobs = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:3000/api/auth/saved",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.get(`${BASE_URL}/auth/saved`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         setSavedJobs(response.data.jobs || []);
       } catch (error) {
         console.error("Error fetching saved jobs:", error);

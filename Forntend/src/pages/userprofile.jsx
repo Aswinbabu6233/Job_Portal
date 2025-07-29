@@ -28,7 +28,10 @@ const Userprofile = () => {
         </h2>
         <div className="flex flex-col items-center mb-4">
           <img
-            src={`http://localhost:3000/${user.profile.replace(/\\/g, "/")}`}
+            src={`https://job-portal-backend-uifu.onrender.com/${user.profile.replace(
+              /\\/g,
+              "/"
+            )}`}
             alt="Profile"
             className="w-30 h-30 rounded-full"
           />

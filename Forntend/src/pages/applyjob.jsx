@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
+import BASE_URL from "../utils/Base_url";
 
 const Applyjob = () => {
   const { id } = useParams(); // job ID from route
@@ -29,7 +30,7 @@ const Applyjob = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        `http://localhost:3000/api/jobs/${id}/apply`,
+        `${BASE_URL}/jobs/${id}/apply`,
         formData,
         {
           headers: {

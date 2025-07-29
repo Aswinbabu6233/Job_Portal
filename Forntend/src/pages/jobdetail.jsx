@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import { useSelector } from "react-redux";
+import BASE_URL from "../utils/Base_url";
 
 const Jobdetail = () => {
   const [job, setJob] = useState(null);
@@ -18,7 +19,7 @@ const Jobdetail = () => {
 
   const deletejob = async () => {
     try {
-      const del = await axios.delete(`http://localhost:3000/api/jobs/${id}`, {
+      const del = await axios.delete(`${BASE_URL}/jobs/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -35,7 +36,7 @@ const Jobdetail = () => {
 
   const fetchJobDetails = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/jobs/${id}`);
+      const response = await axios.get(`${BASE_URL}/jobs/${id}`);
       setJob(response.data); // response is a single job object
     } catch (error) {
       toast.error("Error fetching the job details");

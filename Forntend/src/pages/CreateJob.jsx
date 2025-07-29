@@ -3,6 +3,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import Navbar from "../components/navbar";
+import BASE_URL from "../utils/Base_url";
 
 const CreateJob = () => {
   const auth = useSelector((state) => state.user); // holds { token, user }
@@ -39,7 +40,7 @@ const CreateJob = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/jobs",
+        `${BASE_URL}/jobs`,
         {
           ...formData,
           requirements: formData.requirements
